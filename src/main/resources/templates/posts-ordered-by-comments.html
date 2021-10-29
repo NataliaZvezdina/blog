@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts ordered</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<table id="wrapper">
+    <tr>
+        <td id="header">
+            <p><a th:href="@{/index}">Posts</a></p>
+        </td>
+    </tr>
+    <tr>
+        <td id="content-wrapper">
+            <table>
+                <tr>
+                    <td width="100%"></td>
+                    <td><span>Order by:</span></td>
+                    <td><a th:href="@{/posts-ordered-by-rating}">rating</a></td>
+                    <td>|</td>
+                    <td><a id="active-menu-item" th:href="@{/posts-ordered-by-comments}">comments</a></td>
+                </tr>
+            </table>
+
+            <table th:each="post:${previewDtoList}" id="list-posts">
+                <tr>
+                    <th><h1 th:text="${post.title}" colspan="2"></h1></th>
+                </tr>
+                <tr>
+                    <td th:text="${post.authorName}" colspan="2"></td>
+                </tr>
+                <tr>
+                    <td><p>Viewed: <span th:text="${post.views}"></span></p></td>
+                    <td><a th:href="@{/single-post/{id}(id=${post.postId})}">Read more..</a></td>
+                </tr>
+                <tr><td height="60"></td></tr>
+            </table>
+
+            <table id="list-pagination">
+                <tr>
+                    <td width="100%"></td>
+                    <td th:if="${currentPage}>1">
+                        <a th:href="@{/index?page={previous}(previous=${currentPage}-1)}">&lArr;</a>
+                    </td>
+                    <td th:text="${currentPage}"></td>
+                    <td><a th:href="@{/index?page={next}(next=${currentPage}+1)}">&rArr;</a></td>
+                </tr>
+            </table>
+
+            <hr>
+            <h2><a th:href="@{/create-post}">Add new post:</a></h2>
+            <hr>
+
+        </td>
+    </tr>
+</table>
+<hr>
+</body>
+</html>

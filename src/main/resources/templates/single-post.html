@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Single post</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<table id="wrapper">
+    <tr>
+        <td id="header">
+            <p>Posts№<span th:text="${singlePost.postId}"></span></a></p>
+        </td>
+    </tr>
+    <tr>
+        <td id="content-wrapper">
+
+
+            <table>
+                <tr>
+                    <td width="100%">
+                        <h2 th:text="${singlePost.title}"></h2>
+                    </td>
+                    <td>
+                        <a th:href="@{/up-post?postId={id}(id=${singlePost.postId})}">+</a>
+                    </td>
+                    <td>|<span th:text="${singlePost.rating}"></span>|</td>
+                    <td>
+                        <a th:href="@{/down-post?postId={id}(id=${singlePost.postId})}">-</a>
+                    </td>
+                </tr>
+            </table>
+
+            <p th:text="${singlePost.description}"></p>
+            <br>
+            <hr>
+            <p>Posted by <span th:text="${singlePost.authorName}"></span></p>
+
+            <hr>
+            <a th:href="@{/delete-post/{id}(id=${singlePost.postId})}">Delete post</a>
+            <p>------------</p>
+
+            <h3>Comments</h3>
+            <br>
+
+            <table th:each="comment:${comments}">
+                <tr>
+                    <td>№<span th:text="${comment.commentId}"></span></td>
+                </tr>
+                <tr>
+                    <td th:text="${comment.message}"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a th:href="@{/up-comment?id={id}(id=${comment.commentId})}">+</a>
+                        |<span th:text="${comment.rating}"></span>|
+                        <a th:href="@{/down-comment?id={id}(id=${comment.commentId})}">-</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td th:text="'By ' + ${comment.authorName} + ' ' + ${comment.createdAt}"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a th:href="@{/delete-comment/{id}(id=${comment.commentId})}">Delete comment</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>----------------------------------------------------------------------------</td>
+                </tr>
+                <tr>
+                    <td height="15"></td>
+                </tr>
+            </table>
+            <hr>
+            <h3>Add new comment</h3>
+
+            <form action="#" th:action="@{/create-comment}" th:object="${commentToCreate}" method="post">
+
+                <label for="postId">Post id</label><br>
+                <input readonly name="postId" th:value="${singlePost.postId}" id="postId" type="number"><br><br>
+
+                <label for="author">Author:</label><br>
+                <input th:field="*{authorName}" id="author" type="text"><br><br>
+
+                <label for="message">Message:</label><br>
+                <input th:field="*{message}" id="message" type="text"><br><br>
+
+                <input type="submit" value="Save">
+            </form>
+
+        </td>
+    </tr>
+
+</table>
+<br>
+<hr>
+
+
+<!--    <table width="1000" border="1">-->
+<!--        <tr>-->
+<!--            <th width="30">№</th>-->
+<!--            <th width="200">Title</th>-->
+<!--            <th width="50">Rating</th>-->
+<!--            <th>Author</th>-->
+<!--        </tr>-->
+<!--        <tr th:each="post:${previewDtoList}">-->
+<!--            <td th:text="${post.postId}"></td>-->
+<!--            <td th:text="${post.title}"></td>-->
+<!--            <td th:text="${post.rating}"></td>-->
+<!--            <td th:text="${post.authorName}"></td>-->
+<!--        </tr>-->
+
+<!--    </table>-->
+
+</body>
+</html>
