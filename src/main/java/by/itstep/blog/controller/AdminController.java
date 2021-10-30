@@ -1,6 +1,7 @@
 package by.itstep.blog.controller;
 
 import by.itstep.blog.dto.admin.AdminSignInDto;
+import by.itstep.blog.security.SecurityService;
 import by.itstep.blog.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private SecurityService securityService;
+
     @GetMapping("/sign-in")
     public String getSignInForm(Model model) {
         AdminSignInDto request = new AdminSignInDto();
@@ -23,11 +27,12 @@ public class AdminController {
 
     @PostMapping("/sign-in")
     public String authorize(AdminSignInDto request) {
-        System.out.println(request);
         if (!adminService.checkIfValid(request)) {
             return "redirect:/sign-in";
         }
 
+        securityService.logIn();
         return "redirect:/index";
     }
+
 }

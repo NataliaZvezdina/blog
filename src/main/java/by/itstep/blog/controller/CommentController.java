@@ -2,6 +2,7 @@ package by.itstep.blog.controller;
 
 import by.itstep.blog.dto.post.PostFullDto;
 import by.itstep.blog.entity.Comment;
+import by.itstep.blog.security.SecurityService;
 import by.itstep.blog.service.CommentService;
 import by.itstep.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,14 @@ public class CommentController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private SecurityService securityService;
+
     @GetMapping("/delete-comment/{id}")
     public String deleteComment(@PathVariable long id) {
+        if (!securityService.isLoggedIn()) {
+            return "redirect:/sign-in";
+        }
         Comment commentToDelete = commentService.findById(id);
 
         PostFullDto post = postService.findById(commentToDelete.getPostId());

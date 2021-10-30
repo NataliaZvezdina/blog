@@ -10,7 +10,7 @@
 <table id="wrapper">
     <tr>
         <td id="header">
-            <p>Posts№<span th:text="${singlePost.postId}"></span></a></p>
+            <p>Post№<span th:text="${singlePost.postId}"></span></a></p>
         </td>
     </tr>
     <tr>
@@ -38,7 +38,7 @@
             <p>Posted by <span th:text="${singlePost.authorName}"></span></p>
 
             <hr>
-            <a th:href="@{/delete-post/{id}(id=${singlePost.postId})}">Delete post</a>
+            <a th:if="${loggedIn}" th:href="@{/delete-post/{id}(id=${singlePost.postId})}">Delete post</a>
             <p>------------</p>
 
             <h3>Comments</h3>
@@ -63,7 +63,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <a th:href="@{/delete-comment/{id}(id=${comment.commentId})}">Delete comment</a>
+                        <a th:if="${loggedIn}" th:href="@{/delete-comment/{id}(id=${comment.commentId})}">Delete comment</a>
                     </td>
                 </tr>
                 <tr>

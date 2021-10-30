@@ -1,5 +1,6 @@
 package by.itstep.blog.entity;
 
+import java.sql.Date;
 import java.util.Objects;
 
 public class Post {
@@ -10,16 +11,19 @@ public class Post {
     private int rating;
     private String authorName;
     private int views;
+    private Date createdAt;
 
     public Post() {}
 
-    public Post(long postId, String title, String description, int rating, String authorName, int views) {
+    public Post(long postId, String title, String description, int rating, String authorName, int views,
+                Date createdAt) {
         this.postId = postId;
         this.title = title;
         this.description = description;
         this.rating = rating;
         this.authorName = authorName;
         this.views = views;
+        this.createdAt = createdAt;
     }
 
     public static Builder getBuilder() {
@@ -56,6 +60,11 @@ public class Post {
 
         public Builder setViews(int views) {
             post.views = views;
+            return this;
+        }
+
+        public Builder setCreatedAt(Date createdAt) {
+            post.createdAt = createdAt;
             return this;
         }
 
@@ -112,19 +121,26 @@ public class Post {
         this.views = views;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
-        return postId == post.postId && rating == post.rating && views == post.views && title.equals(post.title) && description.equals(post.description) && authorName.equals(post.authorName);
+        return postId == post.postId && rating == post.rating && views == post.views && title.equals(post.title) && description.equals(post.description) && authorName.equals(post.authorName) && createdAt.equals(post.createdAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(postId, title, description, rating, authorName, views);
+        return Objects.hash(postId, title, description, rating, authorName, views, createdAt);
     }
-
 
     @Override
     public String toString() {
@@ -135,6 +151,7 @@ public class Post {
                 ", rating=" + rating +
                 ", authorName='" + authorName + '\'' +
                 ", views=" + views +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }

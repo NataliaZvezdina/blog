@@ -101,7 +101,6 @@ public class Admin {
                 "adminId=" + adminId +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 '}';
     }
 }

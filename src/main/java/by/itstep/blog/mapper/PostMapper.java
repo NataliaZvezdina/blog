@@ -5,8 +5,10 @@ import by.itstep.blog.dto.post.PostFullDto;
 import by.itstep.blog.dto.post.PostPreviewDto;
 import by.itstep.blog.entity.Post;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +22,7 @@ public class PostMapper {
                 .setRating(rs.getInt("rating"))
                 .setAuthorName(rs.getString("author_name"))
                 .setViews(rs.getInt("views"))
+                .setCreatedAt(rs.getDate("created_at"))
                 .build();
     }
 
@@ -44,6 +47,7 @@ public class PostMapper {
                 .setTitle(postCreateDto.getTitle())
                 .setDescription(postCreateDto.getDescription())
                 .setAuthorName(postCreateDto.getAuthorName())
+                .setCreatedAt(Date.valueOf(LocalDate.now()))
                 .build();
     }
 

@@ -3,6 +3,7 @@ package by.itstep.blog.service;
 import by.itstep.blog.dto.post.PostCreateDto;
 import by.itstep.blog.dto.post.PostFullDto;
 import by.itstep.blog.dto.post.PostPreviewDto;
+import by.itstep.blog.dto.statistics.StatisticsDto;
 import by.itstep.blog.entity.Post;
 
 import java.util.List;
@@ -32,4 +33,6 @@ public interface PostService {
     List<PostPreviewDto> getSearchResult();
 
     void delete(long postId);
+
+    List<StatisticsDto> getStatistics();
 }

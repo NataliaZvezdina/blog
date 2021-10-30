@@ -12,6 +12,10 @@
             <td>
                 <p><a id="active-menu-item" th:href="@{/index}">Posts</a></p>
             </td>
+            <td th:if="${loggedIn}" >
+                <a th:href="@{/statistics}">Statistics</a>
+            </td>
+
             <td>
                 <form action="#" th:action="@{/search}" th:object="${text}" method="post">
                     <input th:value="${text}" name="text" type="text">
@@ -23,7 +27,7 @@
             </td>
         </tr>
         <tr>
-            <td id="content-wrapper" colspan="3">
+            <td id="content-wrapper" colspan="4">
                 <table>
                     <tr>
                         <td width="100%"></td>

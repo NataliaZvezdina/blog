@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistics</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<table id="wrapper">
+    <tr id="header">
+        <td>
+            <p><a th:href="@{/index}">Posts</a></p>
+        </td>
+        <td>
+            <p><a id="active-menu-item" th:href="@{/statistics}">Statistics</a></p>
+        </td>
+    </tr>
+    <tr>
+        <td id="content-wrapper" colspan="3">
+            <table id="statistics" border="1">
+                <tr>
+                    <th width="130">Date</th>
+                    <th width="190">Count posts created</th>
+                    <th width="210">Count comments created</th>
+                </tr>
+                <tr th:each="singleData:${statistics}">
+                    <td th:text="${singleData.date}"></td>
+                    <td th:text="${singleData.counterPosts}"></td>
+                    <td th:text="${singleData.counterComments}"></td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -17,7 +17,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean checkIfValid(AdminSignInDto request) {
         Admin toCompare = adminRepository.findByEmail(request.getEmail());
-        System.out.println(toCompare);
+
         if (toCompare == null) {
             return false;
         }

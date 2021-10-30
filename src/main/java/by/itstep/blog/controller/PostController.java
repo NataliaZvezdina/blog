@@ -5,6 +5,8 @@ import by.itstep.blog.dto.comment.CommentFullDto;
 import by.itstep.blog.dto.post.PostCreateDto;
 import by.itstep.blog.dto.post.PostFullDto;
 import by.itstep.blog.dto.post.PostPreviewDto;
+import by.itstep.blog.dto.statistics.StatisticsDto;
+import by.itstep.blog.security.SecurityService;
 import by.itstep.blog.service.CommentService;
 import by.itstep.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +28,18 @@ public class PostController {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private SecurityService securityService;
+
     @GetMapping("/index")
     public String getMainPage(Model model, @RequestParam(name = "page", defaultValue = "1") int page) {
         List<PostPreviewDto> previewDtoList = postService.findAll(page);
         String text = "";
+        boolean loggedIn = securityService.isLoggedIn();
         model.addAttribute("previewDtoList", previewDtoList);
         model.addAttribute("currentPage", page);
         model.addAttribute("text", text);
+        model.addAttribute("loggedIn", loggedIn);
         return "index";
     }
 
@@ -75,9 +82,12 @@ public class PostController {
 
         CommentCreateDto commentToCreate = new CommentCreateDto();
 
+        boolean loggedIn = securityService.isLoggedIn();
+
         model.addAttribute("singlePost", singlePost);
         model.addAttribute("comments", comments);
         model.addAttribute("commentToCreate", commentToCreate);
+        model.addAttribute("loggedIn", loggedIn);
         return "single-post";
     }
 
@@ -131,7 +141,20 @@ public class PostController {
 
     @GetMapping("/delete-post/{id}")
     public String deletePost(@PathVariable long id) {
+        if (!securityService.isLoggedIn()) {
+            return "redirect:/sign-in";
+        }
         postService.delete(id);
         return "redirect:/index";
+    }
+
+    @GetMapping("/statistics")
+    public String getStatistics(Model model) {
+        if (!securityService.isLoggedIn()) {
+            return "redirect:/sign-in";
+        }
+        List<StatisticsDto> statistics = postService.getStatistics();
+        model.addAttribute("statistics", statistics);
+        return "statistics";
     }
 }

@@ -3,6 +3,7 @@ package by.itstep.blog.service.impl;
 import by.itstep.blog.dto.post.PostCreateDto;
 import by.itstep.blog.dto.post.PostFullDto;
 import by.itstep.blog.dto.post.PostPreviewDto;
+import by.itstep.blog.dto.statistics.StatisticsDto;
 import by.itstep.blog.entity.Comment;
 import by.itstep.blog.entity.Post;
 import by.itstep.blog.mapper.PostMapper;
@@ -109,5 +110,10 @@ public class PostServiceImpl implements PostService {
         commentsToDelete.forEach(c -> commentRepository.deleteById(c.getCommentId()));
 
         postRepository.deleteById(postId);
+    }
+
+    @Override
+    public List<StatisticsDto> getStatistics() {
+        return postRepository.collectStatistics();
     }
 }
