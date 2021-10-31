@@ -223,8 +223,6 @@ public class PostRepositoryImpl implements PostRepository {
             List<StatisticsDto> statistics = new ArrayList<>();
             while (rs.next()) {
                 StatisticsDto statisticsDto = new StatisticsDto();
-//                Date created = rs.getDate("created");
-//                Date num_post = rs.getDate("num_post");
                 statisticsDto.setDate(rs.getDate("created"));
                 statisticsDto.setCounterPosts(rs.getInt("counter_posts"));
                 statisticsDto.setCounterComments(rs.getInt("counter_comments"));

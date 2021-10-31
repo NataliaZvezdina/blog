@@ -154,7 +154,9 @@ public class PostController {
             return "redirect:/sign-in";
         }
         List<StatisticsDto> statistics = postService.getStatistics();
+        int size = statistics.size();
         model.addAttribute("statistics", statistics);
+        model.addAttribute("size", size);
         return "statistics";
     }
 }

@@ -3,6 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Statistics</title>
+
+    <style>
+        .graph {
+            position: relative;
+            border: 1px solid grey;
+
+        }
+
+        .graph .item, .graph .item1 {
+            color: #fff;
+            text-shadow: 1px 1px 1px #000;
+            border-radius: 3px;
+            background-color: #00508C;
+            box-shadow: 0 0 1px #2280AC;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            padding-top: 2px;
+        }
+
+        .graph .item:hover, .graph .item1:hover {
+            background-color: #2280AC;
+            box-shadow: 0 0 2px #2280AC;
+        }
+
+        .graph {
+            height: 120px;
+            width: 200px;
+            padding-bottom: 10px;
+        }
+
+        .graph .item, .graph .item1 {
+            width: 20px;
+            display: inline-block;
+        }
+
+        .st {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
@@ -35,5 +77,40 @@
     </tr>
 </table>
 
+<div class="st">
+    <div class="graph">
+
+        <div class="item" th:each="singleData:${statistics}">
+            <div th:text="${singleData.counterPosts}"></div>
+        </div>
+
+    </div>
+    <div class="graph" style="margin-left: 20px;">
+        <div class="item1" th:each="singleData:${statistics}">
+            <div th:text="${singleData.counterComments}"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const item = document.querySelectorAll('.item');
+    const item1 = document.querySelectorAll('.item1');
+    let x = 0;
+    for (let i = 0; i < item.length; i++) {
+
+        item[i].style.height = item[i].children[0].innerHTML * 20 + 'px';
+
+        x += 20
+        item[i].style.left = x + 'px'
+    }
+    let y = 0;
+    for (let i = 0; i < item1.length; i++) {
+
+        item1[i].style.height = item1[i].children[0].innerHTML * 20 + 'px';
+
+        y += 20
+        item1[i].style.left = y + 'px'
+    }
+</script>
 </body>
 </html>
