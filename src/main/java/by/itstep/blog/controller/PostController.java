@@ -45,7 +45,6 @@ public class PostController {
 
     @GetMapping("/create-post")
     public String createPostForm(Model model) {
-
         PostCreateDto postToCreate = new PostCreateDto();
         model.addAttribute("postToCreate", postToCreate);
         return "create-post";
@@ -53,7 +52,6 @@ public class PostController {
 
     @PostMapping("/create-post")
     public String createProduct(PostCreateDto post) {
-
         postService.createPost(post);
         return "redirect:/index";
     }
@@ -93,9 +91,7 @@ public class PostController {
 
     @PostMapping("/create-comment")
     public String createComment(CommentCreateDto commentToCreate) {
-        System.out.println(commentToCreate);
         commentService.create(commentToCreate);
-
         long id = commentToCreate.getPostId();
         return "redirect:/single-post/" + id;
     }
@@ -154,9 +150,7 @@ public class PostController {
             return "redirect:/sign-in";
         }
         List<StatisticsDto> statistics = postService.getStatistics();
-        int size = statistics.size();
         model.addAttribute("statistics", statistics);
-        model.addAttribute("size", size);
         return "statistics";
     }
 }

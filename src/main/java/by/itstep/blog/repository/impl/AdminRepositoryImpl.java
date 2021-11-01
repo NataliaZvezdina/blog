@@ -28,12 +28,10 @@ public class AdminRepositoryImpl implements AdminRepository {
             pstmt.setString(1, email);
 
             try (ResultSet rs = pstmt.executeQuery()) {
-
                 Admin found = null;
                 if (rs.next()) {
                     found = adminMapper.extract(rs);
                 }
-                System.out.println(found);
                 return found;
             }
         } catch (SQLException e) {

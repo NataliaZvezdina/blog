@@ -9,8 +9,6 @@ i
 9src/main/java/by/itstep/blog/dto/post/PostPreviewDto.java,9\c\9c66bcd51df46c69c59d80da4b0dcc01d2315f23
 k
 ;src/main/java/by/itstep/blog/repository/PostRepository.java,4\9\4993cd2a744990a2a6862c8af4e1a0b001143b72
-n
->src/main/java/by/itstep/blog/dto/comment/CommentCreateDto.java,e\f\ef1cde237b8d42a77630bae6691d8fb16db4e1c0
 f
 6src/main/java/by/itstep/blog/service/AdminService.java,1\6\1646187a7e39ce8d6db51e8c7c79248a32f7313c
 e
@@ -23,8 +21,6 @@ j
 :src/main/java/by/itstep/blog/dto/admin/AdminSignInDto.java,e\c\ec6ae2de457705fdc71ea6e05409c0fd656dabaf
 d
 4src/main/java/by/itstep/blog/mapper/AdminMapper.java,f\9\f9e5e9b670d51f468957ef685016e137d41c0948
-q
-Asrc/main/java/by/itstep/blog/service/impl/CommentServiceImpl.java,4\d\4d4b58a5c678ab8131b8e9fa982fcf7abe68df64
 h
 8src/main/java/by/itstep/blog/service/CommentService.java,b\8\b8bc4bac0d7a12bf52faa91bcc571012c018d469
 `
@@ -35,15 +31,9 @@ f
 6src/main/java/by/itstep/blog/mapper/CommentMapper.java,1\8\18d81e1a3373067d8b5b270c8b82977fddbe3d39
 w
 Gsrc/main/java/by/itstep/blog/repository/impl/CommentRepositoryImpl.java,f\8\f8ede1b30b3093ff6230ec9a2aa83a4b5040c2a7
-u
-Esrc/main/java/by/itstep/blog/repository/impl/AdminRepositoryImpl.java,2\c\2c06ad71d41efc377694a7f1e2d966c571cd013f
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-o
-?src/main/java/by/itstep/blog/service/impl/AdminServiceImpl.java,d\e\de230b82e7380b213dd9d261a5fab3c2468eed64
-n
->src/main/java/by/itstep/blog/controller/CommentController.java,1\a\1af2afdfdbd710d4ca7cb980d87f2285dfbf8d14
 ]
 -src/main/java/by/itstep/blog/entity/Post.java,6\e\6e5d6ce322c6e1462c39a5e975647a89a53d0668
 c
